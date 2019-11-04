@@ -25,7 +25,7 @@ def audio_average():
     stream.stop_stream()
     stream.close()
     p.terminate()
-    return int(average)
+    return int(average*(2**8))
 
 
 # access to cpu process time
