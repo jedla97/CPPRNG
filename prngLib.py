@@ -22,6 +22,7 @@ def seed_value(value):
     return int(value)
 
 
+# edits value of generate numbers by its range
 def range_of_generate_number(int1, int2, rngNumber):
     if int1 < 10 and int2 < 10:
         return int(rngNumber / 100000000)
@@ -48,6 +49,7 @@ def range_of_generate_number(int1, int2, rngNumber):
         return int(rngNumber)
 
 
+# for generate multiple numbers return array of numbers
 def multiple_numbers(iteration, seed):
     x = seed
     i = 0
@@ -60,6 +62,7 @@ def multiple_numbers(iteration, seed):
     return y
 
 
+# plotting the graph
 def plot_numbers(arr):
     plt.plot(arr, 'o')
     plt.show()
