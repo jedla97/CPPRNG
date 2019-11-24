@@ -1,6 +1,6 @@
 import random  # used for generate string
 import string
-import binascii
+import datetime
 
 import pyaudio  # used for generate audio in real time  to install module pip install PyAudio
 import numpy as np
@@ -25,7 +25,7 @@ def audio_average():
     stream.stop_stream()
     stream.close()
     p.terminate()
-    return int(average)
+    return int(average * (2 ** 8))
 
 
 # access to cpu process time
@@ -33,6 +33,18 @@ def audio_average():
 def cpu_gen_process_time():
     info = psutil.cpu_times()
     return int(info[1] * 100000)
+
+
+# generate time from clock in in second
+def get_time():
+    time = psutil.Process().create_time()
+    return int(time)
+
+
+# generate free memory
+def free_memory():
+    mem = psutil.virtual_memory()
+    return int(mem[1])
 
 
 # user input as part of entropy

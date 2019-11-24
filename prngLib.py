@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+
+
 # formula for generate random number
 def prng(seed):
     x = seed_value(seed)
@@ -6,6 +9,7 @@ def prng(seed):
     m = 2 ** 32
     x = (a * x + c) % m
     return x
+
 
 # decrease value of seed because seed must be lower then modulo m in formula
 def seed_value(value):
@@ -18,9 +22,10 @@ def seed_value(value):
     return int(value)
 
 
+# edits value of generate numbers by its range
 def range_of_generate_number(int1, int2, rngNumber):
     if int1 < 10 and int2 < 10:
-        return int(rngNumber / 1000000000)
+        return int(rngNumber / 100000000)
     elif (10 <= int1 < 100) and (10 <= int2 < 100):
         return int(rngNumber / 100000000)
     elif (100 <= int1 < 1000) and (100 <= int2 < 1000):
@@ -42,3 +47,22 @@ def range_of_generate_number(int1, int2, rngNumber):
     else:
         print("will be edited later")  # TO-DO
         return int(rngNumber)
+
+
+# for generate multiple numbers return array of numbers
+def multiple_numbers(iteration, seed):
+    x = seed
+    i = 0
+    y = []
+    while i < iteration:
+        x = prng(x)
+        print(range_of_generate_number(1000000001, 1000000009, x))
+        y.append(x)
+        i += 1
+    return y
+
+
+# plotting the graph
+def plot_numbers(arr):
+    plt.plot(arr, 'o')
+    plt.show()

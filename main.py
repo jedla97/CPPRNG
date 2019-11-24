@@ -1,6 +1,14 @@
 import seedGen as Gn
 import prngLib as Rng
 
+number = Gn.get_time()
+print("test time ", number)
+number = Rng.prng(number)
+print("random ", number)
+number = Gn.free_memory()
+print("test memory ", number)
+number = Rng.prng(number)
+print("random ", number)
 number = Gn.audio_average()
 print("test audio ", number)
 number = Rng.prng(number)
@@ -27,4 +35,6 @@ number = Rng.prng(number)
 print("random ", number)
 number = Rng.range_of_generate_number(110, 750, number)
 print("random in range <1000 ", number)
+# arr = Rng.multiple_numbers(10000, Gn.audio_average())
+# Rng.plot_numbers(arr)
 exit(0)
