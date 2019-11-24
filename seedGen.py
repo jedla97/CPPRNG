@@ -18,27 +18,30 @@ def audio_average():
     stream = p.open(format=pyaudio.paInt16, channels=1, rate=RATE, input=True,
                     frames_per_buffer=CHUNK)
     # first chunk is often almost empty chunks so it's used 12 iteration
-    for i in range(12):
+    # close look - in float average have long number so 2 iteration is enough => faster loading
+    for i in range(2):
         data = np.fromstring(stream.read(CHUNK), dtype=np.int16)
         average = np.average(np.abs(data))
+        # print(average)
 
     stream.stop_stream()
     stream.close()
     p.terminate()
-    return int(average * (2 ** 8))
+    return int(average * 10000 * (2 ** 8))
 
 
 # access to cpu process time
-# generate system for more info documentation( time spend procesing in kernel)
+# generate system for more info documentation( time spend processing in kernel)
 def cpu_gen_process_time():
     info = psutil.cpu_times()
     return int(info[1] * 100000)
 
 
+# not function on win
 # generate time from clock in in second
 def get_time():
-    time = psutil.Process().create_time()
-    return int(time)
+    times = psutil.Process().create_time()
+    return int(times)
 
 
 # generate free memory
