@@ -1,11 +1,9 @@
-import random  # used for generate string
+import random  # used for generate string #notUsed
 import string
-import datetime
-
-import pyaudio  # used for generate audio in real time  to install module pip install PyAudio
 import numpy as np
-import psutil  # used for getting computer statistic    to install module pip install psutil
-import time
+import pyaudio  # used for generate audio in real time  # to install module pip install PyAudio
+import psutil  # used for getting computer statistic # to install module pip install psutil
+
 
 CHUNK = 4096  # 4096b for audio
 RATE = 44100  # bitrate
@@ -37,8 +35,8 @@ def cpu_gen_process_time():
     return int(info[1] * 100000)
 
 
-# not function on win
 # generate time from clock in in second
+# not work on windows so on final build not use
 def get_time():
     times = psutil.Process().create_time()
     return int(times)
@@ -51,6 +49,7 @@ def free_memory():
 
 
 # user input as part of entropy
+# not use in final build chance of user don't type something so seed == 0
 def user_input():
     str_text = input("Type something: ")
     res = bin(int.from_bytes(str_text.encode(), 'big'))
@@ -58,6 +57,8 @@ def user_input():
 
 
 # generate random string
+# do not use not random take numbers from memory
+# not use in final build
 def str_input():
     letters = string.ascii_letters + string.digits + string.punctuation
     str_text = ''.join(random.choice(letters) for i in range(5))

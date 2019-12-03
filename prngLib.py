@@ -22,14 +22,16 @@ def seed_value(value):
     return int(value)
 
 
-# controlling when is number in rage
+# controlling when is number in range
 def in_range(range_min, range_max, number):
     if range_min <= number < range_max:
         return number
     elif number > range_max:
-        return -2  # for number get above target range
+        # for number get above target range
+        return -2
     else:
-        return -1  # for number not in range
+        # for number not in range
+        return -1
 
 
 # modulo of some number
@@ -42,7 +44,6 @@ def modulo_of_input(number, limit):
 
 # edits value of generate numbers by its range
 # by controlling range_min make sure not to divide by 0
-# all state for function are probably done #notSure
 def range_of_generate_number(range_min, range_max, rngNumber):
     counter = 0  # for number of iteration don't increase above difference of range_max - range_min
     number = 0  # returned final number in range
@@ -51,69 +52,91 @@ def range_of_generate_number(range_min, range_max, rngNumber):
         return number
     elif range_min == 1:  # not sure if this is needed maybe duplicated with code in else
         number_of_max = modulo_of_input(rngNumber, range_max)
+        # if modulo of max range == 0
         if number_of_max == 0:
             while True:
+                # for not to modulate higher than max range
                 if counter == (range_max - range_min - 1):
                     counter = 0
                 number_of_min = modulo_of_input(rngNumber, range_min + counter)
                 number = number + number_of_min
                 help_return = in_range(range_min, range_max, number)
+                # number is not in range continue loop
                 if help_return == -1:
                     counter = counter + 1
+                # number out of range
                 elif help_return == -2:
+                    # decreasing number by module maximal range and controlling again
                     number = modulo_of_input(number, range_max)
                     help_return = in_range(range_min, range_max, number)
                     if help_return >= 0:
                         return number
+                # number is in range return number
                 else:
                     return number
+        # if modulo of max range != 0
         else:
             number = number_of_max
             while True:
+                # for not to modulate higher than max range
                 if counter == (range_max - range_min - 1):
                     counter = 0
                 help_return = in_range(range_min, range_max, number)
+                # number is not in range continue loop
                 if help_return == -1:
                     number_of_min = modulo_of_input(rngNumber, range_min + counter)
                     number = number + number_of_min
                     counter = counter + 1
+                # number out of range
                 elif help_return == -2:
+                    # decreasing number by module maximal range
                     number = modulo_of_input(number, range_max)
+                # number is in range return number
                 else:
                     return number
     else:  # for every other min than 0 and 1
         number_max = modulo_of_input(rngNumber, range_max)
         if number_max == 0:
             while True:
+                # for not to modulate higher than max range
                 if counter == (range_max - range_min - 1):
                     counter = 0
                 number_min = modulo_of_input(rngNumber, range_min + counter)
                 number = number + number_min
                 help_range = in_range(range_min, range_max, number)
+                # number is not in range continue loop
                 if help_range == -1:
                     counter = counter + 1
+                # number out of range
                 elif help_range == -2:
+                    # decreasing number by module maximal range and controlling again
                     number = modulo_of_input(number, range_max)
                     help_range = in_range(range_min, range_max, number)
                     if help_range >= 0:
                         return number
+                # number is in range return number
                 else:
                     return number
         else:
             number = number_max
             while True:
+                # for not to modulate higher than max range
                 if counter == (range_max - range_min - 1):
                     counter = 0
                 number_min = modulo_of_input(rngNumber, range_min + counter)
                 number = number + number_min
                 help_range = in_range(range_min, range_max, number)
+                # number is not in range continue loop
                 if help_range == -1:
                     counter = counter + 1
+                # number out of range
                 elif help_range == -2:
+                    # decreasing number by module maximal range and controlling again
                     number = modulo_of_input(number, range_max)
                     help_range = in_range(range_min, range_max, number)
                     if help_range >= 0:
                         return number
+                # number is in range return number
                 else:
                     return number
 
@@ -122,13 +145,12 @@ def range_of_generate_number(range_min, range_max, rngNumber):
 def multiple_numbers(iteration, seed):
     x = seed
     i = 0
-    y = []
+    arr = []
     while i < iteration:
         x = prng(x)
-        # print(range_of_generate_number(1000000001, 1000000009, x))
-        y.append(x)
+        arr.append(x)
         i += 1
-    return y
+    return arr
 
 
 # plotting the graph
