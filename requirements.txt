@@ -1,0 +1,8 @@
+PyQt5
+psutil
+PyAudio
+matplotlib
+scipy
+numba
+pyperclip
+numpy
